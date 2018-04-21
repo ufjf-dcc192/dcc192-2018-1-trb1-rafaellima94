@@ -15,9 +15,11 @@ public class Mesas {
 
     private Integer numero;
     private List<Pedidos> pedidos;
+    private boolean aberta;
 
     public Mesas(Integer numero) {
         this.numero = numero;
+        this.aberta = false;
     }
 
     public Integer getNumero() {
@@ -34,5 +36,13 @@ public class Mesas {
 
     public void setPedidos(List<Pedidos> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public boolean isAberta() {
+        return aberta;
+    }
+
+    public void setAberta(boolean aberta) {
+        this.aberta = aberta;
     }
 }
