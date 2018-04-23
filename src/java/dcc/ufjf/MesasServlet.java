@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = {"/mesas"})
+@WebServlet(urlPatterns = {"/listar-mesas"})
 public class MesasServlet extends HttpServlet {
 
     @Override
@@ -17,13 +17,20 @@ public class MesasServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Mesas> mesas = ListaDeMesas.getInstance();
         request.setAttribute("mesas", mesas);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/mesas.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/listar-mesas.jsp");
         rd.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        Integer mesaNum = Integer.parseInt(request.getParameter("mesaNum"));
+        Mesas mesa = ListaDeMesas.getInstance().get(mesaNum);
+        mesa.setAberta(true);
+        
+        request.setAttribute("mesa", mesa);
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/editar-itens.jsp");
+        rd.forward(request, response);        
     }
 
 }
