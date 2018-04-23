@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 40px 0 60px;
+    height: 100%;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #eee;
+    width: 100%;
+    min-height: 50px;
+    text-align: center;
+}
+
+.footer-text {
+    line-height: 50px;
+}

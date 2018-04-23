@@ -1,0 +1,16 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%><!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Trabalho 1 - DCC192</title>
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body>
+        <aside>
+            <menu>
+                <li><a href="index.html">Mesas</a></li>
+            </menu>
+        </aside>
+        <header>
+            <h1>TRABALHO 1 - DCC192</h1>
+        </header>
