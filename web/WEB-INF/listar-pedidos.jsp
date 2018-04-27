@@ -53,7 +53,7 @@
                 }
             } else {
         %>
-        <h3>Não há pedidos até o momento.</h3>
+        <h4 class="text-muted">Não há pedidos até o momento.</h4>
         <%  } %>
     </div>
 <%@include file="jspf/footer.jspf" %>
