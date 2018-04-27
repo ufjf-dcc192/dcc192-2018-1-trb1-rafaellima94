@@ -1,31 +1,14 @@
-<%@page import="java.time.LocalDateTime"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="dcc.ufjf.Itens"%>
-<%@page import="dcc.ufjf.Mesas"%>
 <%@page import="dcc.ufjf.Pedidos"%>
+<%@page import="java.util.List"%>
+<%@page import="dcc.ufjf.Mesas"%>
 <%@include file="jspf/header.jspf" %>
+    <% Mesas mesa = (Mesas) (request.getAttribute("mesa")); %>
+    <h1>Fechhamento de pedido - Mesa <%=mesa.getNumero()%></h1>
     <%
-        Mesas mesa = (Mesas) request.getAttribute("mesa");
-    %>
-    <h1>Pedidos da Mesa <%=mesa.getNumero()%></h1>
-    <%
-        List<Pedidos> asd = new ArrayList<Pedidos>();
-        Itens i = new Itens(15, "sdf", 20);
-        Itens i1 = new Itens(16, "sdsdff", 203);
-        Pedidos p = new Pedidos(4, LocalDateTime.now());
-        p.addItens(i, 200);
-        p.addItens(i, 12);
-        p.setHoraFechamento(LocalDateTime.now());
-        Pedidos p1 = new Pedidos(23, LocalDateTime.now());
-        p1.addItens(i, 23400);
-        p1.addItens(i1, 122);
-        p1.setHoraFechamento(LocalDateTime.now());
-        asd.add(p);
-        asd.add(p1);
-        mesa.setPedidos(asd);
-        for (Pedidos pedido : mesa.getPedidos()) {
+        Pedidos pedido = ((Mesas) request.getAttribute("mesa")).getPedidoAtual();
     %>
     <span>Pedido número: <%=pedido.getNumero()%></span>
     <span>Hora abertura: <%=pedido.getHoraAberturaString()%></span>
@@ -39,6 +22,10 @@
                 <th>Valor</th>
             </tr>
             <%
+//                Itens i = new Itens("sdf", 20);
+//                Itens i1 = new Itens("sdsdff", 203);
+//                pedido.addItens(i, 3);
+//                pedido.addItens(i1, 4);
                 for (Map.Entry<Itens, Integer> item : ((Map<Itens, Integer>) pedido.getItens()).entrySet()) {
             %>
             <tr>
@@ -60,7 +47,4 @@
             %>
         </tbody>
     </table>
-    <%
-        }
-    %>
 <%@include file="jspf/footer.jspf" %>

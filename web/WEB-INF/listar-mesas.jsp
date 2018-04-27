@@ -13,17 +13,17 @@
                     if(mesa.isAberta()) {
                 %>
                     <td>
-                        <form method="POST" action="">
-                            <button type="submit">
-                            <input type="hidden" name="mesaNum" value="<%= mesa.getNumero() %>" />
+                        <a href="editar-pedido?mesa=<%=mesa.getNumero()%>">
+                            <button>
                                 Realizar pedido
                             </button>
-                        </form>
+                        </a>
                     </td>
                     <td>
-                        <form method="POST" action="">
+                        <form method="POST">
                             <button type="submit">
-                            <input type="hidden" name="mesaNum" value="<%= mesa.getNumero() %>" />
+                            <input type="hidden" name="action" value="fechar" />
+                            <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
                                 Fechar mesa
                             </button>
                         </form>
@@ -34,18 +34,18 @@
                     <td>
                         <form method="POST">
                             <button type="submit">
-                            <input type="hidden" name="mesaNum" value="<%= mesa.getNumero() %>" />
+                            <input type="hidden" name="action" value="abrir" />
+                            <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
                                 Abrir mesa
                             </button>
                         </form>
                     </td>
                     <td>
-                        <form method="POST" action="">
-                            <input type="hidden" name="mesaNum" value="<%= mesa.getNumero() %>" />
-                            <button type="submit">
+                        <a href="listar-pedidos?mesa=<%=mesa.getNumero()%>">
+                            <button>
                                 Ver pedidos
                             </button>
-                        </form>
+                        </a>
                     </td>
                 <%
                     }
