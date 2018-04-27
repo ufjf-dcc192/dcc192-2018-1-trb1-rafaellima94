@@ -50,10 +50,16 @@ public class RestauranteServlet extends HttpServlet {
             
             if(mesa.isAberta()) {
                 mesa.setAberta(false);
-                mesa.getPedidoAtual().setHoraFechamento(LocalDateTime.now());
-                request.setAttribute("mesa", mesa);
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/fechar-pedido.jsp");
-                rd.forward(request, response);
+                
+                if (!mesa.getPedidoAtual().getItens().isEmpty()) {
+                    mesa.getPedidoAtual().setHoraFechamento(LocalDateTime.now());
+                    request.setAttribute("mesa", mesa);
+                    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/fechar-pedido.jsp");
+                    rd.forward(request, response);
+                } else {
+                    mesa.getPedidos().remove(mesa.getPedidoAtual());
+                    response.sendRedirect("listar-mesas");
+                }
             } else {
                 response.sendRedirect("listar-mesas");
             }

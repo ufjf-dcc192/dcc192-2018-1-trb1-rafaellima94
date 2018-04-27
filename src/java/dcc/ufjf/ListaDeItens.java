@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dcc.ufjf;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author ice
- */
 public class ListaDeItens {
 
     private static List<Itens> itens;
@@ -34,6 +25,7 @@ public class ListaDeItens {
             itens.add(new Itens(13, "Cerveja", 6.00));
             itens.add(new Itens(14, "Cerveja artesanal", 8.00));
         }
+        
         return itens;
     }
 }

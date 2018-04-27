@@ -10,8 +10,8 @@
                     for (Mesas mesa : (List<Mesas>) request.getAttribute("mesas")) {
                 %>
                 <tr>
-                    <td class="text-center w-50">Mesa <%=mesa.getNumero()%></td>
-                    <td class="p-0">
+                    <td>Mesa <%=mesa.getNumero()%></td>
+                    <td class="p-0 w-25">
                         <div class="d-flex">
                         <%
                             if(mesa.isAberta()) {
