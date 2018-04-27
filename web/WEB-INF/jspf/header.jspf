@@ -4,11 +4,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>Trabalho 1 - DCC192</title>
         <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/bootstrao.min.css" />
     </head>
     <body>
         <aside>
             <menu>
-                <li><a href="index.html">Mesas</a></li>
+                <li><a href="listar-mesas">Mesas</a></li>
             </menu>
         </aside>
         <header>
