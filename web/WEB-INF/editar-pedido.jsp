@@ -12,6 +12,30 @@
     <h1>Editar Itens - Mesa <%=mesa.getNumero()%></h1>
     <span>Pedido número: <%=pedido.getNumero()%></span>
     <span>Hora abertura: <%=pedido.getHoraAberturaString()%></span>
+    <form method="POST">
+        <input type="hidden" name="action" value="adicionarItem" />
+        <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
+        <div class="row">
+            <select class="form-control col-3" name="item">
+                <%
+                    for (Itens item : (List<Itens>) ListaDeItens.getInstance()) {
+                %>
+                <option value="<%=item.getId()%>"><%=item.getNome()%></option>
+                <%
+                    }
+                %>
+            </select>
+            <input class="form-control col-3" type="number" name="quantidade" />
+        </div>
+        <button class="btn btn-success" type="submit">Adicionar itens</button>
+    </form>
+    <form method="POST">
+        <input type="hidden" name="action" value="fechar" />
+        <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
+        <button class="btn btn-primary" type="submit">
+            Fechar mesa
+        </button>
+    </form>
     <% if (!pedido.getItens().isEmpty()) { %>
     <table border="1">
         <tbody>
@@ -37,6 +61,16 @@
                 <td>
                     R$<%=item.getKey().getPreco()*item.getValue()%>
                 </td>
+                <td>
+                    <form method="POST">
+                        <input type="hidden" name="action" value="removerItem" />
+                        <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
+                        <input type="hidden" name="itemId" value="<%=item.getKey().getId()%>" />
+                        <button class="btn btn-danger" type="submit">
+                            Remover
+                        </button>
+                    </form>
+                </td>
             </tr>
             <%
                 }
@@ -44,26 +78,4 @@
         </tbody>
     </table>
     <% } %>
-    <form method="POST">
-        <input type="hidden" name="action" value="adicionarItem" />
-        <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
-        <select name="item">
-            <%
-                for (Itens item : (List<Itens>) ListaDeItens.getInstance()) {
-            %>
-            <option value="<%=item.getId()%>"><%=item.getNome()%></option>
-            <%
-                }
-            %>
-        </select>
-        <input type="number" name="quantidade" />
-        <button type="submit">Adicionar itens</button>
-    </form>
-    <form method="POST">
-        <input type="hidden" name="action" value="fechar" />
-        <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
-        <button class="btn btn-default" type="submit">
-            Fechar mesa
-        </button>
-    </form>
 <%@include file="jspf/footer.jspf" %>

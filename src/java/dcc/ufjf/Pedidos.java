@@ -50,6 +50,12 @@ public class Pedidos {
             this.itens.put(item, quantidade);
         }
     }
+    
+    public void removeItens(Itens item) {
+        if(itens.containsKey(item)) {
+            itens.remove(item);
+        }
+    }
 
     public LocalDateTime getHoraAbertura() {
         return horaAbertura;

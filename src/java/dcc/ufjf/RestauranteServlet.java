@@ -73,8 +73,8 @@ public class RestauranteServlet extends HttpServlet {
             Mesas mesa = ListaDeMesas.getInstance().get(mesaNum - 1);
             
             if(mesa.isAberta()) {
-                Itens item = ListaDeItens.getInstance().get(Integer.parseInt(request.getParameter("item")) - 1);
-                mesa.getPedidoAtual().addItens(item, Integer.parseInt(request.getParameter("quantidade")));
+                Itens item = ListaDeItens.getInstance().get(Integer.parseInt(request.getParameter("itemId")) - 1);
+                mesa.getPedidoAtual().removeItens(item);
                 response.sendRedirect("editar-pedido?mesa=" + mesa.getNumero().toString());
             } else {
                 response.sendRedirect("listar-mesas");
