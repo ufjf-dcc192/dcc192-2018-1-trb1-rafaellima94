@@ -7,11 +7,14 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" />
     </head>
     <body>
-        <aside>
-            <menu>
-                <li><a href="listar-mesas">Mesas</a></li>
-            </menu>
-        </aside>
-        <header>
-            <h1>TRABALHO 1 - DCC192</h1>
-        </header>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Trabalho 1 - DCC192</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="listar-mesas">Mesas</span></a>
+                </div>
+            </div>
+        </nav>
