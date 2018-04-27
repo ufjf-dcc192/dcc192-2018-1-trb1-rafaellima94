@@ -4,7 +4,7 @@
     <div class="container">
         <h2>Lista de Mesas</h2>
         <hr class="border-top" />
-        <table class="table table-sm table-bordered col-6">
+        <table class="table table-sm table-bordered w-50 mx-auto">
             <tbody>
                 <%
                     for (Mesas mesa : (List<Mesas>) request.getAttribute("mesas")) {
