@@ -14,16 +14,16 @@
                 %>
                     <td>
                         <a href="editar-pedido?mesa=<%=mesa.getNumero()%>">
-                            <button>
-                                Realizar pedido
+                            <button class="btn btn-default">
+                                Editar pedido
                             </button>
                         </a>
                     </td>
                     <td>
                         <form method="POST">
-                            <button type="submit">
                             <input type="hidden" name="action" value="fechar" />
                             <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
+                            <button class="btn btn-default" type="submit">
                                 Fechar mesa
                             </button>
                         </form>
@@ -33,16 +33,16 @@
                 %>
                     <td>
                         <form method="POST">
-                            <button type="submit">
                             <input type="hidden" name="action" value="abrir" />
                             <input type="hidden" name="mesaNum" value="<%=mesa.getNumero()%>" />
+                            <button class="btn btn-default" type="submit">
                                 Abrir mesa
                             </button>
                         </form>
                     </td>
                     <td>
                         <a href="listar-pedidos?mesa=<%=mesa.getNumero()%>">
-                            <button>
+                            <button class="btn btn-default">
                                 Ver pedidos
                             </button>
                         </a>

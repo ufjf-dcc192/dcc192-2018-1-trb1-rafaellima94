@@ -43,16 +43,42 @@ public class RestauranteServlet extends HttpServlet {
             Mesas mesa = ListaDeMesas.getInstance().get(mesaNum - 1);
             mesa.setAberta(true);
             mesa.addPedido(new Pedidos(mesa.getNumero(), LocalDateTime.now()));
-
             response.sendRedirect("editar-pedido?mesa=" + mesa.getNumero().toString());
         } else if ("fechar".equals(action)) {
             Integer mesaNum = Integer.parseInt(request.getParameter("mesaNum"));
             Mesas mesa = ListaDeMesas.getInstance().get(mesaNum - 1);
-            mesa.setAberta(false);
-            mesa.getPedidoAtual().setHoraFechamento(LocalDateTime.now());
-            request.setAttribute("mesa", mesa);
-            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/fechar-pedido.jsp");
-            rd.forward(request, response);
+            
+            if(mesa.isAberta()) {
+                mesa.setAberta(false);
+                mesa.getPedidoAtual().setHoraFechamento(LocalDateTime.now());
+                request.setAttribute("mesa", mesa);
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/fechar-pedido.jsp");
+                rd.forward(request, response);
+            } else {
+                response.sendRedirect("listar-mesas");
+            }
+        } else if ("adicionarItem".equals(action)) {
+            Integer mesaNum = Integer.parseInt(request.getParameter("mesaNum"));
+            Mesas mesa = ListaDeMesas.getInstance().get(mesaNum - 1);
+            
+            if(mesa.isAberta()) {
+                Itens item = ListaDeItens.getInstance().get(Integer.parseInt(request.getParameter("item")) - 1);
+                mesa.getPedidoAtual().addItens(item, Integer.parseInt(request.getParameter("quantidade")));
+                response.sendRedirect("editar-pedido?mesa=" + mesa.getNumero().toString());
+            } else {
+                response.sendRedirect("listar-mesas");
+            }
+        } else if ("removerItem".equals(action)) {
+            Integer mesaNum = Integer.parseInt(request.getParameter("mesaNum"));
+            Mesas mesa = ListaDeMesas.getInstance().get(mesaNum - 1);
+            
+            if(mesa.isAberta()) {
+                Itens item = ListaDeItens.getInstance().get(Integer.parseInt(request.getParameter("item")) - 1);
+                mesa.getPedidoAtual().addItens(item, Integer.parseInt(request.getParameter("quantidade")));
+                response.sendRedirect("editar-pedido?mesa=" + mesa.getNumero().toString());
+            } else {
+                response.sendRedirect("listar-mesas");
+            }
         }
     }
 

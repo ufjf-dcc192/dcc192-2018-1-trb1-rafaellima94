@@ -11,20 +11,6 @@
     %>
     <h1>Pedidos da Mesa <%=mesa.getNumero()%></h1>
     <%
-        List<Pedidos> asd = new ArrayList<Pedidos>();
-        Itens i = new Itens(15, "sdf", 20);
-        Itens i1 = new Itens(16, "sdsdff", 203);
-        Pedidos p = new Pedidos(4, LocalDateTime.now());
-        p.addItens(i, 200);
-        p.addItens(i, 12);
-        p.setHoraFechamento(LocalDateTime.now());
-        Pedidos p1 = new Pedidos(23, LocalDateTime.now());
-        p1.addItens(i, 23400);
-        p1.addItens(i1, 122);
-        p1.setHoraFechamento(LocalDateTime.now());
-        asd.add(p);
-        asd.add(p1);
-        mesa.setPedidos(asd);
         for (Pedidos pedido : mesa.getPedidos()) {
     %>
     <span>Pedido número: <%=pedido.getNumero()%></span>

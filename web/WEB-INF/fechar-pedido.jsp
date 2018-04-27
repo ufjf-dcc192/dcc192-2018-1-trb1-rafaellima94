@@ -5,11 +5,11 @@
 <%@page import="java.util.List"%>
 <%@page import="dcc.ufjf.Mesas"%>
 <%@include file="jspf/header.jspf" %>
-    <% Mesas mesa = (Mesas) (request.getAttribute("mesa")); %>
-    <h1>Fechhamento de pedido - Mesa <%=mesa.getNumero()%></h1>
-    <%
+    <%  
+        Mesas mesa = (Mesas) (request.getAttribute("mesa"));
         Pedidos pedido = ((Mesas) request.getAttribute("mesa")).getPedidoAtual();
     %>
+    <h1>Fechamento de pedido - Mesa <%=mesa.getNumero()%></h1>
     <span>Pedido número: <%=pedido.getNumero()%></span>
     <span>Hora abertura: <%=pedido.getHoraAberturaString()%></span>
     <span>Hora fechamento: <%=pedido.getHoraFechamentoString()%></span>
@@ -22,11 +22,10 @@
                 <th>Valor</th>
             </tr>
             <%
-//                Itens i = new Itens("sdf", 20);
-//                Itens i1 = new Itens("sdsdff", 203);
-//                pedido.addItens(i, 3);
-//                pedido.addItens(i1, 4);
+                double valorTotal = 0;
                 for (Map.Entry<Itens, Integer> item : ((Map<Itens, Integer>) pedido.getItens()).entrySet()) {
+                    double valor = item.getKey().getPreco()*item.getValue();
+                    valorTotal += valor;
             %>
             <tr>
                 <td>
@@ -39,12 +38,20 @@
                     <%=item.getValue()%>
                 </td>
                 <td>
-                    R$<%=item.getKey().getPreco()*item.getValue()%>
+                    R$<%=valor%>
                 </td>
             </tr>
             <%
                 }
             %>
+            <tr>
+                <td colspan="3">
+                    Total
+                </td>
+                <td>
+                    R$<%=valorTotal%>
+                </td>
+            </tr>
         </tbody>
     </table>
 <%@include file="jspf/footer.jspf" %>
