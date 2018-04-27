@@ -5,6 +5,7 @@
  */
 package dcc.ufjf;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class Mesas {
     public Mesas(Integer numero) {
         this.numero = numero;
         this.aberta = false;
+        this.pedidos = new ArrayList<>();
     }
 
     public Integer getNumero() {
@@ -36,6 +38,14 @@ public class Mesas {
 
     public void setPedidos(List<Pedidos> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public void addPedido(Pedidos pedido) {
+        this.pedidos.add(pedido);
+    }
+
+    public Pedidos getPedidoAtual() {
+        return this.pedidos.get(this.pedidos.size() - 1);
     }
 
     public boolean isAberta() {

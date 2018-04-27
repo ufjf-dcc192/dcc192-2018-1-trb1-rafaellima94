@@ -5,7 +5,8 @@
  */
 package dcc.ufjf;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,13 +18,13 @@ public class Pedidos {
 
     private Integer numero;
     private Map<Itens, Integer> itens;
-    private Date horaAbertura;
-    private Date horaFechamento;
+    private LocalDateTime horaAbertura;
+    private LocalDateTime horaFechamento;
 
-    public Pedidos(Integer numero, Date horaAbertura) {
+    public Pedidos(Integer numero, LocalDateTime horaAbertura) {
         this.numero = numero;
         this.horaAbertura = horaAbertura;
-        itens = new HashMap<Itens, Integer>();
+        itens = new HashMap<>();
     }
 
     public Integer getNumero() {
@@ -42,19 +43,37 @@ public class Pedidos {
         this.itens = itens;
     }
 
-    public Date getHoraAbertura() {
+    public void addItens(Itens item, Integer quantidade) {
+        if(itens.containsKey(item)) {
+            itens.put(item, itens.get(item) + quantidade);
+        } else {
+            this.itens.put(item, quantidade);
+        }
+    }
+
+    public LocalDateTime getHoraAbertura() {
         return horaAbertura;
     }
 
-    public void setHoraAbertura(Date horaAbertura) {
+    public String getHoraAberturaString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return horaAbertura.format(formatter);
+    }
+
+    public void setHoraAbertura(LocalDateTime horaAbertura) {
         this.horaAbertura = horaAbertura;
     }
 
-    public Date getHoraFechamento() {
+    public LocalDateTime getHoraFechamento() {
         return horaFechamento;
     }
 
-    public void setHoraFechamento(Date horaFechamento) {
+    public String getHoraFechamentoString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        return horaFechamento.format(formatter);
+    }
+
+    public void setHoraFechamento(LocalDateTime horaFechamento) {
         this.horaFechamento = horaFechamento;
     }
 }
